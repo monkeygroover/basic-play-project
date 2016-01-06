@@ -1,0 +1,6 @@
+# Routes
+
+POST     /user                           controllers.Registration.registerUser
+#GET      /user/:uuid                     controllers.Registration.getUser(uuid: String)
+
+
