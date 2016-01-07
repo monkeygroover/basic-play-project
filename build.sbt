@@ -4,14 +4,14 @@ version := "1.0-SNAPSHOT"
 
 lazy val root = (project in file(".")).enablePlugins(PlayScala)
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.11.7"
 
 libraryDependencies ++= Seq(
-  jdbc,
-  cache,
-  ws,
-  specs2 % Test,
-  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.2.play24"
+  //specs2 % Test,
+  "org.reactivemongo" %% "play2-reactivemongo" % "0.11.9",
+  "org.scalatest" %% "scalatest" % "2.2.6" % "test",
+  "org.scalatestplus" %% "play" % "1.4.0-M4" % "test",
+  "org.mockito" % "mockito-core" % "1.9.5" % "test"
 )
 
 resolvers += "scalaz-bintray" at "http://dl.bintray.com/scalaz/releases"
