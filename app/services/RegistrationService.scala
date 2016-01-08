@@ -34,10 +34,13 @@ trait MongoRegistrationService extends RegistrationService {
     }
   }
 
-  def findUser(uuid: String): Future[Option[UserRest]] =
-    for {
-      bsonObjectId <- Future.fromTry(BSONObjectID.parse(uuid))
-      query = BSONDocument("_id" -> bsonObjectId)
-      result <- collection.find(query).one[User]
-    } yield { result.map { user => UserRest(firstName = user.firstName, lastName = user.lastName)} }
+  def findUser(uuid: String): Future[Option[UserRest]] = {
+      BSONObjectID.parse(uuid).map { objId =>
+        val query = BSONDocument("_id" -> objId)
+
+        collection.find(query).one[User].map { result =>
+          result.map { user => UserRest(firstName = user.firstName, lastName = user.lastName) }
+        }
+      } getOrElse(Future.successful(None))
+  }
 }
