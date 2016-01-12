@@ -1,5 +1,1 @@
-Some thoughts on the current code:
 
-1) The code currently does not have any authentication or authorisation, this would be critical to add, also access to the resource is via the uuid, this would idealy need to be secured so that users cannot access other users data.
-2) The database layer is currently not well mocked out, there is still too much of the code path not unit tested, this should be improved with a better mocking solution for mongo (if mongo was still used)
-3) if the uuid is of the incorrect form then the exception thrown is currently exposed directly to the user, this should be trapped and presented in a better way.
